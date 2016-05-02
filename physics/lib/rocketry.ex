@@ -1,18 +1,13 @@
-defmodule Calcs do
-  def rounded_to_neareset_tenth(val) do
-    Float.ceil(val, 1)
-  end
-
-  def convert_to_km(velocity) do
-    velocity / 1000
-  end
-
-end
 
 defmodule Physics.Rocketry do
 
   def escape_velocity(:earth) do
     %{mass: 5.972e24, radius: 6.371e6}
+      |> escape_velocity
+  end
+
+  def escape_velocity(:mars) do
+    %{mass: 6.39e23, radius: 3.4e6}
       |> escape_velocity
   end
 
