@@ -21,10 +21,15 @@ defmodule RocketryTest do
     assert v == 5.1
   end
 
-  test "the Moon has escape velocity of .0238 km/s" do
-    v =:mars
+  test "the Moon has escape velocity of 2.4 km/s" do
+    v =:moon
       |> Physics.Rocketry.escape_velocity
-    assert v == 5.1
+    assert v == 2.4
+  end
+
+  test "Earth orbital accelaration is 9.51" do
+    a = Physics.Rocketry.orbital_accelartion(100)
+    assert a == 9.512678810620692
   end
 
 end

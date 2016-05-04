@@ -14,15 +14,25 @@ defmodule Physics.Rocketry do
       |> escape_velocity
   end
 
+  def escape_velocity(:moon) do
+    Planets.moon
+      |> escape_velocity
+  end
+
   def escape_velocity(planet) when is_map(planet) do
     planet
     |> calculate_escape
     |> to_km
-    |> to_neareset_tenth
+    |> to_nearest_tenth
   end
 
   def orbital_speed(height) do
     newtons_gravitational_constant * Planets.earth.mass / orbital_radius(height)
+    |> :math.sqrt
+  end
+
+  def orbital_accelartion(height) do
+   (orbital_speed(height) |> squared) / orbital_radius(height)
   end
 
   defp orbital_radius(height) do
