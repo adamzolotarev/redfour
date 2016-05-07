@@ -23,6 +23,10 @@ defmodule Calcs do
     val * val * val
   end
 
+  def cube_root(val) do
+    :math.pow(val, 1/3)
+  end
+
   def seconds_to_hours(val) do
     (val / 60 / 60) |> to_nearest_tenth
   end

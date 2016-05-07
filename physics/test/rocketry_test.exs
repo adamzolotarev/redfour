@@ -27,9 +27,46 @@ defmodule RocketryTest do
     assert v == 2.4
   end
 
-  test "Earth orbital accelaration is 9.51" do
-    a = Physics.Rocketry.orbital_accelartion(100)
+  test "Earth orbital accelaration is 9.51 at 100km" do
+    a = Physics.Rocketry.orbital_accelartion(:earth, 100)
     assert a == 9.512678810620692
   end
+
+  test "Mars orbital accelaration is 3.48 at 100km" do
+    a = Physics.Rocketry.orbital_accelartion(:mars, 100)
+    assert a == 3.4792897959183673
+  end
+
+  test "Moon orbital accelaration is 1.45 at 100km" do
+    a = Physics.Rocketry.orbital_accelartion(:moon, 100)
+    assert a ==  1.4511829222519155
+  end
+
+  test "Earth orbital speed is 7845 m/s at 100km" do
+    a = Physics.Rocketry.orbital_speed(:earth, 100)
+    assert a ==  7845.797893364734
+  end
+
+  test "Mars orbital speed is 7845 m/s at 100km" do
+    a = Physics.Rocketry.orbital_speed(:mars, 100)
+    assert a ==  3489.6295341646633
+  end
+
+  test "Moon orbital speed is 7845 m/s at 100km" do
+    a = Physics.Rocketry.orbital_speed(:moon, 100)
+    assert a ==  1633.179172993282
+  end
+
+
+  test "Orbital term at 100km for Earth should be 1.5 hours" do
+    a = Physics.Rocketry.orbital_term(:earth, 100)
+    assert a ==  1.5
+  end
+
+  test "Not sure if this is right; Orbital height for 1.5 hours" do
+    a = Physics.Rocketry.orbital_height(:earth, 1.5*60*60)
+    assert a ==  280.1
+  end
+
 
 end
