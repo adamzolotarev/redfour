@@ -36,4 +36,24 @@ defmodule SolarTest do
     p = Solar.power(%{classification: :C, scale: 99})
     assert p == 99
   end
+
+  test "No EVA when power is greater than 1000" do
+    p = Solar.no_eva([%{classification: :X, scale: 2}])
+    assert length(p) == 1
+  end
+
+  test "Do EVA when power is 1000" do
+    p = Solar.no_eva([%{classification: :X, scale: 1}])
+    assert length(p) == 0
+  end
+
+  test "Do EVA when power is less than 1000" do
+    p = Solar.no_eva([%{classification: :M, scale: 99}])
+    assert length(p) == 0
+  end
+
+  test "Go inside", %{data: flares} do
+    d = Solar.no_eva(flares)
+    assert length(d) == 3
+  end
 end
