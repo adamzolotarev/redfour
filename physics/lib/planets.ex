@@ -14,30 +14,18 @@ defmodule Planet do
   def load do
       Enum.map list, fn(planet) ->
         planet
-        |> calculate_escape_velocity
+        |> set_escape_velocity
     end
   end
 
-  def earth do
-    %{mass: 5.972e24, radius: 6.371e6}
-  end
-
-  def mars do
-    %{mass: 6.39e23, radius: 3.4e6}
-  end
-
-  def moon do
-    %{mass: 7.35e22, radius: 1.738e6}
-  end
-
-  def calculate_escape_velocity(planet) when is_map(planet) do
+  def set_escape_velocity({name, planet}) when is_map(planet) do
     velocity =
       planet
       |> calculate_escape
       |> to_km
       |> to_nearest_tenth
 
-    %{planet | escape_velocity: velocity}
+    {name, %{planet | escape_velocity: velocity}}
   end
 
   defp calculate_escape(%{mass: mass, radius: radius}) do
