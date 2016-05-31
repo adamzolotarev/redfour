@@ -5,7 +5,8 @@ defmodule Solar.Flare do
     scale: 0,
     power: 0,
     is_deadly: false,
-    date: nil
+    date: nil,
+    index: 0
   ]
 
   # updated_map = %{map | key: "val"}
